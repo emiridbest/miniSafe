@@ -1,18 +1,17 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { abi } from './abi/abi';
+import {contractAddress, abi } from '../utils/abi';
 import { BrowserProvider, Contract, parseEther, formatUnits } from "ethers";
 
 export default function Home() {
   const cUsdTokenAddress = "0x765DE816845861e75A25fCA122bb6898B8B1282a";
   const celoAddress = "0x0000000000000000000000000000000000000000";
-  const contractAddress = "0x55670abc1948e8e4eaf6fbd3dfdd93066fc085fa";
 
 
   const [depositAmount, setDepositAmount] = useState<string>('');
   const [celoBalance, setCeloBalance] = useState<string>('');
   const [cusdBalance, setCusdBalance] = useState<string>('');
   const [tokenBalance, setTokenBalance] = useState<string>('');
-  const [selectedToken, setSelectedToken] = useState<string>('CELO');
+  const [selectedToken, setSelectedToken] = useState<string>('cUSD');
 
   const getBalance = useCallback(async () => {
     if (window.ethereum) {

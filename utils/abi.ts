@@ -1,10 +1,5 @@
-
-export const abi:any[] = [
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
+export const contractAddress = "0x55670abc1948e8e4eaf6fbd3dfdd93066fc085fa";
+export const abi = [
 	{
 		"inputs": [
 			{
@@ -233,30 +228,6 @@ export const abi:any[] = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "spender",
-				"type": "address"
-			}
-		],
-		"name": "allowance",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
 				"name": "spender",
 				"type": "address"
 			},
@@ -281,59 +252,6 @@ export const abi:any[] = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "balances",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "celoBalance",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "cUsdBalance",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "depositTime",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenIncentive",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
 				"name": "tokenAddress",
 				"type": "address"
 			}
@@ -341,38 +259,6 @@ export const abi:any[] = [
 		"name": "breakTimelock",
 		"outputs": [],
 		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "depositor",
-				"type": "address"
-			}
-		],
-		"name": "canWithdraw",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "decimals",
-		"outputs": [
-			{
-				"internalType": "uint8",
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -394,118 +280,10 @@ export const abi:any[] = [
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "tokenAddress",
-				"type": "address"
-			}
-		],
-		"name": "getBalance",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "lockDuration",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "name",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"name": "renounceOwnership",
 		"outputs": [],
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "symbol",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "depositor",
-				"type": "address"
-			}
-		],
-		"name": "timeSinceDeposit",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "totalSupply",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -575,6 +353,10 @@ export const abi:any[] = [
 		"type": "function"
 	},
 	{
+		"stateMutability": "payable",
+		"type": "receive"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -588,7 +370,225 @@ export const abi:any[] = [
 		"type": "function"
 	},
 	{
-		"stateMutability": "payable",
-		"type": "receive"
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			}
+		],
+		"name": "allowance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "balances",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "celoBalance",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "cUsdBalance",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "depositTime",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenIncentive",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "depositor",
+				"type": "address"
+			}
+		],
+		"name": "canWithdraw",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "decimals",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			}
+		],
+		"name": "getBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "lockDuration",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "name",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "depositor",
+				"type": "address"
+			}
+		],
+		"name": "timeSinceDeposit",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	}
 ]
