@@ -16,7 +16,8 @@ export default function Header() {
             setHideConnectBtn(true);
             connect();
         }
-    }, [connect]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <Disclosure as="nav" className="bg-black border-b border-white">
