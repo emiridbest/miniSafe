@@ -62,9 +62,6 @@ export default function Home() {
         const contract = new Contract(contractAddress, abi, signer);
         // Getting token balance
         const tokenBalance = await contract.balanceOf(userAddress);
-        const amountToApprove = parseEther("0.1"); // Adjust the amount as needed
-        const approvalTransaction = await contract.approve(contractAddress, amountToApprove);
-        await approvalTransaction.wait();
         if (tokenBalance !== undefined) {
           const tokenBalanceBigInt = formatUnits(tokenBalance, 0);
           const formattedTokenBalance = tokenBalanceBigInt.toString();
@@ -97,22 +94,21 @@ export default function Home() {
       const signer = await provider.getSigner(userAddress);
       const contract = new Contract(contractAddress, abi, signer);
       const depositValue = parseEther(depositAmount);
-      const gasLimit = parseInt("6000000");
-
+      const gasLimit = parseInt("60000");
       if (selectedToken === 'CELO') {
-        await contract.deposit(celoAddress, depositValue, { gasLimit });
+        let tx = await contract.deposit(celoAddress, depositValue, { gasLimit });
+        let receipt = await tx.wait();
       } else if (selectedToken === 'cUSD') {
-        await contract.deposit(cUsdTokenAddress, depositValue, { gasLimit });
+        let tx = await contract.deposit(cUsdTokenAddress, depositValue, { gasLimit });
+        let receipt = await tx.wait();
       }
-
       getBalance();
       getTokenBalance();
       setDepositAmount('');
     }
   };
 
-  const handleWithdraw = async (event: React.FormEvent) => {
-    event.preventDefault();
+  const handleWithdraw = async () => {
     if (window.ethereum) {
       let accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
@@ -123,11 +119,13 @@ export default function Home() {
       const provider = new BrowserProvider(window.ethereum);
       const signer = await provider.getSigner(userAddress);
       const contract = new Contract(contractAddress, abi, signer);
-
+      const gasLimit = parseInt("60000");
       if (selectedToken === 'CELO') {
-        await contract.withdraw(celoAddress);
+        let tx = await contract.withdraw(celoAddress, { gasLimit });
+        let receipt = await tx.wait();
       } else if (selectedToken === 'cUSD') {
-        await contract.withdraw(cUsdTokenAddress);
+        let tx = await contract.withdraw(cUsdTokenAddress, { gasLimit });
+        let receipt = await tx.wait();
       }
 
       getBalance();
@@ -136,8 +134,7 @@ export default function Home() {
     }
   };
 
-  const handleBreakLock = async (event: React.FormEvent) => {
-    event.preventDefault();
+  const handleBreakLock = async () => {
     if (window.ethereum) {
       let accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
@@ -148,14 +145,16 @@ export default function Home() {
       const provider = new BrowserProvider(window.ethereum);
       const signer = await provider.getSigner(userAddress);
       const contract = new Contract(contractAddress, abi, signer);
-
+      const gasLimit = parseInt("60000");
       if (selectedToken === 'CELO') {
-        await contract.breakTimeLock(celoAddress);
+        let tx = await contract.breakTimelock(celoAddress, { gasLimit });
+        let receipt = await tx.wait();
       } else if (selectedToken === 'cUSD') {
-        await contract.breakTimeLock(cUsdTokenAddress);
+        let tx = await contract.breakTimelock(cUsdTokenAddress, { gasLimit });
+        let receipt = await tx.wait();
       }
-
       getBalance();
+      getTokenBalance();
     }
   };
 
