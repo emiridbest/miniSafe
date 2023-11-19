@@ -6,8 +6,7 @@ export default function Home() {
   const cUsdTokenAddress = "0x765DE816845861e75A25fCA122bb6898B8B1282a";
   const celoAddress = "0x0000000000000000000000000000000000000000";
   const contractAddress = "0x55670abc1948e8e4eaf6fbd3dfdd93066fc085fa";
-  const receiverAddress = ""; // Add your receiver address
-  const [address, setAddress] = useState<string>('');
+
 
   const [depositAmount, setDepositAmount] = useState<string>('');
   const [celoBalance, setCeloBalance] = useState<string>('');
