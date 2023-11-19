@@ -1,5 +1,8 @@
-# miniSafe
-miniSafe is a decentyralised solution to revolutionalised the world of online savings as well as the crypto savings space in Afrtica and the world beyond.
+## miniSafe
+miniSafe is a decentralised solution to revolutionalised the world of online savings as well as the crypto savings space in Afrtica and the world beyond.
+
+
+watch demo => https://youtu.be/EfEG1wXP5RA?si=tBqjbVhjkfCE1DL3
 
 watch pitch presentation => https://www.loom.com/share/25661e14f0dd4cbe97c5e5f6921cab02?sid=7234e6dc-b90f-45c4-938a-1e90391a0b9a
 
