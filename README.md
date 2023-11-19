@@ -1,5 +1,7 @@
-![2](https://github.com/emiridbest/miniSafe/assets/6362475/a84f4b0c-c648-4db4-bc22-c693b3602139)![1](https://github.com/emiridbest/miniSafe/assets/6362475/21a87add-662b-4029-9ca5-77dd5475f4da)# miniSafe
+# miniSafe
 miniSafe is a decentyralised solution to revolutionalised the world of online savings as well as the crypto savings space in Afrtica and the world beyond.
+
+watch pitch presentation => https://www.loom.com/share/25661e14f0dd4cbe97c5e5f6921cab02?sid=7234e6dc-b90f-45c4-938a-1e90391a0b9a
 
 
 ![1](https://github.com/emiridbest/miniSafe/assets/6362475/4eed805c-1e89-4295-af83-2a8a1db3a8ac)
