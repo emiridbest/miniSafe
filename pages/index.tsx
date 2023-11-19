@@ -47,7 +47,7 @@ export default function Home() {
         console.error("Error fetching balance:", error);
       }
     }
-  }, [selectedToken]);
+  }, []);
 
   const getTokenBalance = useCallback(async () => {
     if (window.ethereum) {
