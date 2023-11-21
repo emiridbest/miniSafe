@@ -94,7 +94,7 @@ export default function Home() {
       const signer = await provider.getSigner(userAddress);
       const contract = new Contract(contractAddress, abi, signer);
       const depositValue = parseEther(depositAmount);
-      const gasLimit = parseInt("60000");
+      const gasLimit = parseInt("600000");
       if (selectedToken === 'CELO') {
         let tx = await contract.deposit(celoAddress, depositValue, { gasLimit });
         let receipt = await tx.wait();
@@ -119,7 +119,7 @@ export default function Home() {
       const provider = new BrowserProvider(window.ethereum);
       const signer = await provider.getSigner(userAddress);
       const contract = new Contract(contractAddress, abi, signer);
-      const gasLimit = parseInt("60000");
+      const gasLimit = parseInt("600000");
       if (selectedToken === 'CELO') {
         let tx = await contract.withdraw(celoAddress, { gasLimit });
         let receipt = await tx.wait();
@@ -145,7 +145,7 @@ export default function Home() {
       const provider = new BrowserProvider(window.ethereum);
       const signer = await provider.getSigner(userAddress);
       const contract = new Contract(contractAddress, abi, signer);
-      const gasLimit = parseInt("60000");
+      const gasLimit = parseInt("600000");
       if (selectedToken === 'CELO') {
         let tx = await contract.breakTimelock(celoAddress, { gasLimit });
         let receipt = await tx.wait();
@@ -166,7 +166,7 @@ export default function Home() {
   return (
     <div className="">
       <div className="bg-gypsum bg-opacity-3 rounded-lg p-8 shadow-lg text-white w-96">
-        <div className="flex flex-col items-center justify-center text-4xl font-bold mb-6 items-center text-black uppercase tracking-wider border-b-2 border-black pb-2">START SAVING NOW</div>
+        <div className="flex flex-col items-center justify-center text-4xl font-bold mb-6 items-center text-black uppercase tracking-wider border-b-2 border-black pb-2">START SAVING TODAY</div>
         <div className="flex flex-col items-center justify-center">
           <h3 className="text-black text-sm bg-gradient-to-r from-gray-100 to-prosperity-300 rounded-md p-2 mb-1">Your CELO Balance: {celoBalance} CELO</h3>
           <h3 className="text-black text-sm bg-gradient-to-r from-gypsum to-blue-50 rounded-md p-2">Your cUSD Balance: {cusdBalance} cUSD</h3>
@@ -207,6 +207,6 @@ export default function Home() {
           Break Lock
         </button>
       </div>
-    </div>
+      </div>
   );
 }

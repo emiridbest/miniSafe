@@ -1,6 +1,9 @@
 ## miniSafe
 miniSafe is a decentralised solution to revolutionalised the world of online savings as well as the crypto savings space in Afrtica and the world beyond.
 
+## TO DO
+- Smart contract for paying utility bills as well as adding merchants - DONE!!!
+- Update "Pay Bills" page pass all props correctly - DONE!!!
 
 watch demo => https://youtu.be/EfEG1wXP5RA?si=tBqjbVhjkfCE1DL3
 
