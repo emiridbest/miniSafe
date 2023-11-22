@@ -125,7 +125,7 @@ const Merchant: React.FC = () => {
     };
 
     return (
-        <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+        <div className="flex flex-col max-w-screen-xl mx-auto px-4 md:px-8">
             <div className="max-w-lg">
                 <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
                     Available Merchants
@@ -151,13 +151,13 @@ const Merchant: React.FC = () => {
                             <th className="py-3 px-6">Address</th>
                         </tr>
                     </thead>
-                    <tbody className="text-black divide-y">
+                    <tbody className="divide-y">
                         {merchants.map((item, idx) => (
                             <tr key={idx}>
-                                <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{item.description}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{item.address}</td>
-                                <td className="text-right px-6 whitespace-nowrap">
+                                <td className="px-6 py-4 whitespace-nowrap text-black">{item.name}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-black">{item.description}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-black">{item.address}</td>
+                                <td className="text-right px-6 whitespace-nowrap text-black">
                                     <button
                                         onClick={() => handlePay(item)}
                                         className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg"

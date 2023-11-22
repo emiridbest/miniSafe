@@ -20,9 +20,9 @@ const YourComponent: React.FC = () => {
                             Build your SaaS solution with help from our experts
                         </p>
                         <p className="mt-3 text-gray-600">
-                        At our institute, we specialize in imparting essential financial acumen to individuals and businesses alike. Our comprehensive curriculum encompasses both investment and savings skills, ensuring that our students develop a well-rounded understanding of financial management.
+                            At our institute, we specialize in imparting essential financial acumen to individuals and businesses alike. Our comprehensive curriculum encompasses both investment and savings skills, ensuring that our students develop a well-rounded understanding of financial management.
 
-Through a meticulously designed program, we guide individuals and companies in navigating the intricacies of investment strategies and cultivating prudent savings habits. Our experienced instructors employ innovative teaching methods to make complex financial concepts accessible to learners of all levels.
+                            Through a meticulously designed program, we guide individuals and companies in navigating the intricacies of investment strategies and cultivating prudent savings habits. Our experienced instructors employ innovative teaching methods to make complex financial concepts accessible to learners of all levels.
                         </p>
                         <a
                             href="javascript:void(0)"
