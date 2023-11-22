@@ -4,6 +4,7 @@ miniSafe is a decentralised solution to revolutionalised the world of online sav
 ## TO DO
 - Smart contract for paying utility bills as well as adding merchants - DONE!!!
 - Update "Pay Bills" page pass all props correctly - DONE!!!
+- Fix Header link bug on large screens
 
 watch demo => https://youtu.be/EfEG1wXP5RA?si=tBqjbVhjkfCE1DL3
 
@@ -43,3 +44,5 @@ watch pitch presentation => https://www.loom.com/share/25661e14f0dd4cbe97c5e5f69
 ![10](https://github.com/emiridbest/miniSafe/assets/6362475/768ae40f-87a7-441f-9638-6e9ed5e18e6c)
 ![11](https://github.com/emiridbest/miniSafe/assets/6362475/9d8157da-bde1-478f-93fa-1a42cf6c2e42)
 ![12](https://github.com/emiridbest/miniSafe/assets/6362475/7df216f0-fa4e-473a-8990-7d0e9521c1e2)
+
+
