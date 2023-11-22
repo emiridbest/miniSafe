@@ -69,6 +69,8 @@ const Merchant: React.FC = () => {
             setName('');
             setDescription('');
             setAddress('');
+            setMerchantModal(false);
+
         }
     };
 
@@ -100,8 +102,6 @@ const Merchant: React.FC = () => {
 
             let tx = await contract.send(merchantAddress, depositValue);
             await tx.wait();
-
-            setModal(false);
         }
     };
 
@@ -120,8 +120,6 @@ const Merchant: React.FC = () => {
 
             let tx = await contract.updateMerchant(selectedMerchant.key, newName, newDescription, newAddress);
             await tx.wait();
-
-            setMerchantModal(false);
             getMerchants();
         }
     };
@@ -156,7 +154,7 @@ const Merchant: React.FC = () => {
                     <tbody className="text-black divide-y">
                         {merchants.map((item, idx) => (
                             <tr key={idx}>
-                                <td className="px-6 py-4">{item.name}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{item.description}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{item.address}</td>
                                 <td className="text-right px-6 whitespace-nowrap">

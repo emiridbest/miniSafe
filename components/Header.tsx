@@ -27,7 +27,8 @@ export default function Header() {
                         <div className="relative flex h-16 justify-between">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button */}
-                                <Disclosure.Button className="inline-flex items-center justify-center rounded-md  text-white focus:outline-white focus:ring-1 focus:ring-inset focus:rounded-none focus:ring-white">                                    <span className="sr-only">
+                                <Disclosure.Button className="inline-flex items-center justify-center rounded-md  text-white focus:outline-white focus:ring-1 focus:ring-inset focus:rounded-none focus:ring-white">
+                                    <span className="sr-only">
                                         Open main menu
                                     </span>
                                     {open ? (
@@ -55,13 +56,14 @@ export default function Header() {
                                     <div className="text-4xl font-bold justify-start text-white">MiniSafe</div>
 
                                 </div>
-                                <div className="hidden sm:ml-6 text-white sm:flex sm:space-x-8">
-                                    <Link href="/"
-
-                                        className="inline-flex items-center border-b-2 border-white px-1 pt-1 text-sm font-medium text-white"
+                                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                                    <Link
+                                        href="/"
+                                        className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
                                     >
                                         Home
                                     </Link>
+
                                 </div>
                                 <div className="hidden sm:ml-6 text-white sm:flex sm:space-x-8">
                                     <Link href="/invest"
@@ -70,119 +72,120 @@ export default function Header() {
                                     >
                                         Invest
                                     </Link>
-                                    <div className="hidden sm:ml-6 text-white sm:flex sm:space-x-8">
-                                        <Link href="/jobs"
-                                            className="inline-flex items-center border-b-2 border-white px-1 pt-1 text-sm font-medium text-white"
-                                        >
-                                            Jobs
-                                        </Link>
-                                    </div>
-                                    <div className="hidden sm:ml-6 text-white sm:flex sm:space-x-8">
-                                        <Link href="/testimonials"
-                                            className="inline-flex items-center border-b-2 border-white px-1 pt-1 text-sm font-medium text-white"
-                                        >
-                                            Testimonials
-                                        </Link>
-                                    </div>
-                                    <div className="hidden sm:ml-6 text-white sm:flex sm:space-x-8">
-                                        <Link href="/blogs"
-                                            className="inline-flex items-center border-b-2 border-white px-1 pt-1 text-sm font-medium text-white"
-                                        >
-                                            Blogs
-                                        </Link>
-                                    </div>
-                                    <div className="hidden sm:ml-6 text-white sm:flex sm:space-x-8">
-                                        <Link href="/pay" className="inline-flex items-center border-b-2 border-white px-1 pt-1 text-sm font-medium text-white"
-                                        >
-                                            Pay Bills
-                                        </Link>
-                                    </div>
-                                    <div className="hidden sm:ml-6 text-white sm:flex sm:space-x-8">
-                                        <Link href="/contact"
-                                            className="inline-flex items-center border-b-2 border-white px-1 pt-1 text-sm font-medium text-white"
-                                        >
-                                            Add Merchant
-                                        </Link>
-                                    </div>
-                                    <div className="hidden sm:ml-6 text-white sm:flex sm:space-x-8">
-                                        <Link href="/faq" className="inline-flex items-center border-b-2 border-white px-1 pt-1 text-sm font-medium text-white"
-                                        >
-                                            FAQ
-                                        </Link>
-                                    </div>
                                 </div>
-                            </div>
-                            <Disclosure.Panel className="sm:hidden">
-                                <div className="inline-flex bg-black flex-col space-y-1 pt-2 pb-4">
-                                    <Disclosure.Button
-                                        as="a"
-                                        href="#"
-                                        className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
-                                    >
-                                        Home
-                                    </Disclosure.Button>
-                                    <Disclosure.Button
-                                        as="a"
-                                        href="pay"
-                                        className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
-                                    >
-                                        Pay Bills
-                                    </Disclosure.Button>
-                                    <Disclosure.Button
-                                        as="a"
-                                        href="invest"
-                                        className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
-                                    >
-                                        Invest
-                                    </Disclosure.Button>
-                                    <Disclosure.Button
-                                        as="a"
-                                        href="jobs"
-                                        className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
+                                <div className="hidden sm:ml-6 text-white sm:flex sm:space-x-8">
+                                    <Link href="/jobs"
+                                        className="inline-flex items-center border-b-2 border-white px-1 pt-1 text-sm font-medium text-white"
                                     >
                                         Jobs
-                                    </Disclosure.Button>
-                                    <Disclosure.Button
-                                        as="a"
-                                        href="faq"
-                                        className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
-                                    >
-                                        FAQ
-                                    </Disclosure.Button>
-                                    <Disclosure.Button
-                                        as="a"
-                                        href="blogs"
-                                        className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
-                                    >
-                                        Blogs
-                                    </Disclosure.Button>
-                                    <Disclosure.Button
-                                        as="a"
-                                        href="testimonials"
-                                        className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
+                                    </Link>
+                                </div>
+                                <div className="hidden sm:ml-6 text-white sm:flex sm:space-x-8">
+                                    <Link href="/testimonials"
+                                        className="inline-flex items-center border-b-2 border-white px-1 pt-1 text-sm font-medium text-white"
                                     >
                                         Testimonials
-                                    </Disclosure.Button>
-                                    <Disclosure.Button
-                                        as="a"
-                                        href="contact"
-                                        className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
+                                    </Link>
+                                </div>
+                                <div className="hidden sm:ml-6 text-white sm:flex sm:space-x-8">
+                                    <Link href="/blogs"
+                                        className="inline-flex items-center border-b-2 border-white px-1 pt-1 text-sm font-medium text-white"
+                                    >
+                                        Blogs
+                                    </Link>
+                                </div>
+                                <div className="hidden sm:ml-6 text-white sm:flex sm:space-x-8">
+                                    <Link href="/pay" className="inline-flex items-center border-b-2 border-white px-1 pt-1 text-sm font-medium text-white"
+                                    >
+                                        Pay Bills
+                                    </Link>
+                                </div>
+                                <div className="hidden sm:ml-6 text-white sm:flex sm:space-x-8">
+                                    <Link href="/contact"
+                                        className="inline-flex items-center border-b-2 border-white px-1 pt-1 text-sm font-medium text-white"
                                     >
                                         Add Merchant
-                                    </Disclosure.Button>
-                                    {/* Add here your custom menu elements */}
+                                    </Link>
                                 </div>
-
-
-                            </Disclosure.Panel>
+                                <div className="hidden sm:ml-6 text-white sm:flex sm:space-x-8">
+                                    <Link href="/faq" className="inline-flex items-center border-b-2 border-white px-1 pt-1 text-sm font-medium text-white"
+                                    >
+                                        FAQ
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        </div>
+                        <Disclosure.Panel className="sm:hidden">
+                            <div className="inline-flex bg-black flex-col space-y-1 pt-2 pb-4">
+                                <Disclosure.Button
+                                    as="a"
+                                    href="#"
+                                    className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
+                                >
+                                    Home
+                                </Disclosure.Button>
+                                <Disclosure.Button
+                                    as="a"
+                                    href="pay"
+                                    className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
+                                >
+                                    Pay Bills
+                                </Disclosure.Button>
+                                <Disclosure.Button
+                                    as="a"
+                                    href="invest"
+                                    className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
+                                >
+                                    Invest
+                                </Disclosure.Button>
+                                <Disclosure.Button
+                                    as="a"
+                                    href="jobs"
+                                    className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
+                                >
+                                    Jobs
+                                </Disclosure.Button>
+                                <Disclosure.Button
+                                    as="a"
+                                    href="faq"
+                                    className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
+                                >
+                                    FAQ
+                                </Disclosure.Button>
+                                <Disclosure.Button
+                                    as="a"
+                                    href="blogs"
+                                    className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
+                                >
+                                    Blogs
+                                </Disclosure.Button>
+                                <Disclosure.Button
+                                    as="a"
+                                    href="testimonials"
+                                    className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
+                                >
+                                    Testimonials
+                                </Disclosure.Button>
+                                <Disclosure.Button
+                                    as="a"
+                                    href="contact"
+                                    className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-gray-500"
+                                >
+                                    Add Merchant
+                                </Disclosure.Button>
+                                {/* Add here your custom menu elements */}
+                            </div>
+
+
+                        </Disclosure.Panel>
+
 
                 </>
             )
             }
         </Disclosure >
-    );
+    )
 }
 
 declare global {
