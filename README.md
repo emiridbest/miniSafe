@@ -10,6 +10,27 @@ watch demo => https://youtu.be/EfEG1wXP5RA?si=tBqjbVhjkfCE1DL3
 watch pitch presentation => https://www.loom.com/share/25661e14f0dd4cbe97c5e5f6921cab02?sid=7234e6dc-b90f-45c4-938a-1e90391a0b9a
 
 
+## Sections Not Coverred in The Demo Videos
+- Pay Utility Bills: This section allows merchants to add wallet address as payment gateway so that clients/customers can pay for services with stable coins.merchant details can also be updated using this portal
+![Screenshot from 2023-11-22 07-36-59](https://github.com/emiridbest/miniSafe/assets/6362475/dc8b92a2-6636-4a8c-a74c-ad6b4f90dfd7)
+
+
+- Testimonials
+
+  
+![Screenshot from 2023-11-22 07-37-44](https://github.com/emiridbest/miniSafe/assets/6362475/8c3db5c9-9e4f-4e18-9732-af6f971ca3bc)
+
+
+- Blogs
+
+  
+  ![Screenshot from 2023-11-22 07-38-43](https://github.com/emiridbest/miniSafe/assets/6362475/8a774e64-3cd3-4b33-a27e-80c59603293c)
+
+- Jobs
+
+- Contact section
+
+  
 ![1](https://github.com/emiridbest/miniSafe/assets/6362475/4eed805c-1e89-4295-af83-2a8a1db3a8ac)
 ![2](https://github.com/emiridbest/miniSafe/assets/6362475/a1ac4862-edfd-4846-b872-89a4c26ecdea)
 ![3](https://github.com/emiridbest/miniSafe/assets/6362475/b8a70f1a-af39-4261-8fdc-de907e7755de)
