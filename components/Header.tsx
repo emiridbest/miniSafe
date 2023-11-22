@@ -122,7 +122,7 @@ return (
                     <div className="space-y-1 pt-2 pb-4">
                         <Disclosure.Button
                             as="a"
-                            href="#"
+                            href="/"
                             className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-black"
                         >
                             Home
@@ -171,6 +171,15 @@ return (
                             className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-black"
                         >
                             Testimonials
+                        </Disclosure.Button>
+                    </div>
+                    <div className="space-y-1 pt-2 pb-4">
+                        <Disclosure.Button
+                            as="a"
+                            href="/contact"
+                            className="block border-l-4 border-black py-2 pl-3 pr-4 text-base font-medium text-black"
+                        >
+                            Contact Us
                         </Disclosure.Button>
                     </div>
                     <div className="space-y-1 pt-2 pb-4">
