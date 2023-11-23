@@ -11,6 +11,11 @@ interface Merchant {
     address: string;
     description: string;
 }
+interface MerchantTableModalProps {
+    onPay: (address: string) => void;
+    onModify: (merchant: Merchant) => void;
+}
+
 
 const Merchant: React.FC = () => {
     const [merchants, setMerchants] = useState<Merchant[]>([]);
@@ -20,6 +25,8 @@ const Merchant: React.FC = () => {
     const [modal, setModal] = useState(false);
     const [merchantModal, setMerchantModal] = useState(false);
     const [selectedMerchant, setSelectedMerchant] = useState<Merchant | null>(null);
+    const [paymentModalOpen, setPaymentModalOpen] = useState(false);
+    const [merchantModalOpen, setMerchantModalOpen] = useState(false);
 
     const getMerchants = useCallback(async () => {
         if (window.ethereum) {
@@ -35,20 +42,20 @@ const Merchant: React.FC = () => {
 
                 let merchantIds = await contract.allMerchant();
                 const formattedMerchants: Merchant[] = [];
-
                 for (const merchantIdBN of merchantIds) {
-                    const merchantString = merchantIdBN.toString();
-                    const merchantId = parseInt(merchantString);
-                    const merchantDetail = await contract.getMerchantInfo(merchantId-1);
+                    const merchantId = parseInt(merchantIdBN);
+                    const merchantDetail = await contract.getMerchantInfo(merchantId - 1);
                     formattedMerchants.push({ ...merchantDetail, key: merchantId });
                 }
-
                 setMerchants(formattedMerchants);
+                console.log("Merchant IDs:", formattedMerchants);
+
             } catch (error) {
                 console.error("Error fetching merchants:", error);
             }
         }
     }, []);
+
 
     const addMerchant = async (name: string, description: string, address: string) => {
         if (!name || !description || !address) return;
@@ -74,21 +81,20 @@ const Merchant: React.FC = () => {
         }
     };
 
-    const handlePay = (merchant: Merchant) => {
-        setSelectedMerchant(merchant);
-        setModal(true);
+    const handlePay = (address: Merchant["address"]) => {
+        setAddress(address);
+        setPaymentModalOpen(true);
     };
 
     const handleModify = (merchant: Merchant) => {
         setSelectedMerchant(merchant);
-        setMerchantModal(true);
+        setMerchantModalOpen(true);
     };
-
     useEffect(() => {
         getMerchants();
     }, [getMerchants]);
 
-    const handleSendPayment = async (merchantAddress: string, amount: string) => {
+    const handleSendPayment = async (merchantAddress: string, amount: number) => {
         if (window.ethereum) {
             let accounts = await window.ethereum.request({
                 method: "eth_requestAccounts",
@@ -98,9 +104,8 @@ const Merchant: React.FC = () => {
             const provider = new BrowserProvider(window.ethereum);
             const signer = await provider.getSigner(userAddress);
             const contract = new Contract(contractAddress, abi, signer);
-            const depositValue = parseEther(amount);
-
-            let tx = await contract.send(merchantAddress, depositValue);
+            console.log(merchantAddress);
+            let tx = await contract.send(merchantAddress, amount);
             await tx.wait();
         }
     };
@@ -146,26 +151,28 @@ const Merchant: React.FC = () => {
                 <table className="w-full table-auto text-sm text-left">
                     <thead className="bg-gray-50 text-gray-600 font-medium border-b">
                         <tr>
+                        <th className="py-3 px-6">S/N</th>
                             <th className="py-3 px-6">Product Name</th>
                             <th className="py-3 px-6">Description</th>
                             <th className="py-3 px-6">Address</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y">
-                        {merchants.map((item, idx) => (
+                    <tbody className="divide-y text-black">
+                        {merchants.map((selectedMerchant, idx) => (
                             <tr key={idx}>
-                                <td className="px-6 py-4 whitespace-nowrap text-black">{item.name}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-black">{item.description}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-black">{item.address}</td>
-                                <td className="text-right px-6 whitespace-nowrap text-black">
+                                <td className="px-6 py-4">{selectedMerchant.id}</td>
+                                <td className="px-6 py-4">{selectedMerchant.name}</td>
+                                <td className="px-6 py-4">{selectedMerchant.description}</td>
+                                <td className="px-6 py-4">{selectedMerchant.address}</td>
+                                <td className="text-right px-6">
                                     <button
-                                        onClick={() => handlePay(item)}
+                                        onClick={() => handlePay(selectedMerchant.address)}
                                         className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg"
                                     >
                                         Pay
                                     </button>
                                     <button
-                                        onClick={() => handleModify(item)}
+                                        onClick={() => handleModify(selectedMerchant)}
                                         className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg"
                                     >
                                         Modify
@@ -173,26 +180,34 @@ const Merchant: React.FC = () => {
                                 </td>
                             </tr>
                         ))}
+
                     </tbody>
                 </table>
             </div>
 
             {/* Modal for Pay */}
-            {modal && (
+            {paymentModalOpen && (
                 <PaymentModal
-                    onSendPayment={handleSendPayment}
-                    onClose={() => setModal(false)}
-                    merchantAddress={selectedMerchant?.address || ''}
+                    onSendPayment={(merchantAddress, amount) => {
+                        handleSendPayment(merchantAddress, amount);
+                        setPaymentModalOpen(false);
+                    }}
+                    onClose={() => setPaymentModalOpen(false)}
+                    address={selectedMerchant?.address || ''}
                 />
             )}
 
             {/* Modal for Modify */}
-            {merchantModal && (
+            {merchantModalOpen && (
                 <MerchantModal
                     onAddMerchant={addMerchant}
                     onModifyMerchant={handleModifyMerchant}
-                    onClose={() => setMerchantModal(false)}
-                    merchant={selectedMerchant || undefined} />
+                    onClose={() => {
+                        setMerchantModalOpen(false);
+                        setSelectedMerchant(null);
+                    }}
+                    merchant={selectedMerchant || undefined}
+                />
             )}
         </div>
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Link from 'next/link';
 const YourComponent: React.FC = () => {
     return (
         <section className="py-14">
@@ -24,8 +24,8 @@ const YourComponent: React.FC = () => {
 
                             Through a meticulously designed program, we guide individuals and companies in navigating the intricacies of investment strategies and cultivating prudent savings habits. Our experienced instructors employ innovative teaching methods to make complex financial concepts accessible to learners of all levels.
                         </p>
-                        <a
-                            href="javascript:void(0)"
+                        <Link
+                            href="/contact"
                             className="inline-flex gap-x-1 items-center text-indigo-600 hover:text-indigo-500 duration-150 font-medium"
                         >
                             Learn more
@@ -36,7 +36,7 @@ const YourComponent: React.FC = () => {
                                     clipRule="evenodd"
                                 />
                             </svg>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

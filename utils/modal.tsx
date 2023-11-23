@@ -1,22 +1,23 @@
+import Merchant from "@/pages/pay";
 import * as Dialog from "@radix-ui/react-dialog";
 import React, { useState } from "react";
 
 interface PaymentModalProps {
-  onSendPayment: (address: string, amount: string) => void;
+  onSendPayment: (address: Merchant["address"], amount: number) => void;
   onClose: () => void;
-  merchantAddress: string;
+  address: Merchant["address"];
 }
 
-const PaymentModal: React.FC<PaymentModalProps> = ({ onSendPayment, onClose, merchantAddress }) => {
-  const [amount, setAmount] = useState("");
+const PaymentModal: React.FC<PaymentModalProps> = ({ onSendPayment, onClose, address }) => {
+  const [amount, setAmount] = useState<number>(0);
 
   const handleSendPayment = () => {
     if (amount) {
-      onSendPayment(merchantAddress, amount);
+      onSendPayment(address, amount);
       onClose();
     }
   };
-
+  
   return (
     <Dialog.Root open={true} onOpenChange={(isOpen) => !isOpen && onClose()}>
       <Dialog.Overlay className="fixed inset-0 bg-black opacity-40" />
@@ -48,7 +49,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ onSendPayment, onClose, mer
               <input
                 className="w-full pl-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 placeholder="Merchant Address"
-                value={merchantAddress}
+                value={address} // Use the actual address prop
                 readOnly
               />
             </fieldset>
@@ -58,7 +59,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ onSendPayment, onClose, mer
                 className="w-full pl-12 pr-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 placeholder="Enter amount"
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={(e) => setAmount(Number(e.target.value))}
               />
             </fieldset>
 

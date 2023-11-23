@@ -1,5 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import React, { useState } from "react";
+import Merchant from "@/pages/pay";
 
 interface MerchantModalProps {
   onAddMerchant: (name: string, description: string, address: string) => Promise<void>;
@@ -9,12 +10,7 @@ interface MerchantModalProps {
 }
 
 
-interface Merchant {
-  id: number;
-  name: string;
-  description: string;
-  address: string;
-}
+
 
 const MerchantModal: React.FC<MerchantModalProps> = ({
   onAddMerchant,

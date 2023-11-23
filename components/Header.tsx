@@ -23,7 +23,7 @@ return (
     <Disclosure as="nav" className="bg-prosperity border-b border-black">
         {({ open }) => (
             <>
-                <div className="mx-auto max-w-7xl px-2 sm:px-6">
+                <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-2">
                     <div className="relative flex h-16 ">
                         <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                             {/* Mobile menu button */}
@@ -94,7 +94,7 @@ return (
                             </div>
                             <div className="hidden sm:ml-6 sm:flex sm:space-x-2">
                                 <Link
-                                    href="/Contact"
+                                    href="/contact"
                                     className="inline-flex items-center border-b-2 border-black px-1 pt-1 text-sm font-medium text-gray-900"
                                 >
                                     Contact
