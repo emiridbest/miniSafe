@@ -1,5 +1,6 @@
 ## miniSafe
 miniSafe is a decentralised solution to revolutionalised the world of online savings as well as the crypto savings space in Afrtica and the world beyond.
+miniSafe also facilitates fast payment for utilities and services via cUSD.
 
 ## TO DO
 - Smart contract for paying utility bills as well as adding merchants - DONE!!!
