@@ -96,7 +96,7 @@ const Merchant: React.FC = () => {
             const contract = new Contract(contractAddress, abi, signer);
             console.log(merchantAddress);
             let deposit = parseInt(amount)
-            let tx = await contract.send(merchantAddress, amount);
+            let tx = await contract.send(merchantAddress, deposit);
             await tx.wait();
         }
     };
