@@ -3,16 +3,18 @@ import * as Dialog from "@radix-ui/react-dialog";
 import React, { useState } from "react";
 
 interface PaymentModalProps {
-  onSendPayment: (address: Merchant["address"], amount: number) => void;
+  onSendPayment: (address: string, amount: string) => void;
   onClose: () => void;
-  address: Merchant["address"];
+  merchant: Merchant | undefined;
 }
 
-const PaymentModal: React.FC<PaymentModalProps> = ({ onSendPayment, onClose, address }) => {
-  const [amount, setAmount] = useState<number>(0);
+const PaymentModal: React.FC<PaymentModalProps> = ({ onSendPayment, onClose, merchant }) => {
+  const [amount, setAmount] = useState<string>("");
+  const [address, setAddress] = useState(merchant?.address || "");
 
   const handleSendPayment = () => {
     if (amount) {
+      setAddress(address);
       onSendPayment(address, amount);
       onClose();
     }
@@ -20,9 +22,13 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ onSendPayment, onClose, add
   
   return (
     <Dialog.Root open={true} onOpenChange={(isOpen) => !isOpen && onClose()}>
-      <Dialog.Overlay className="fixed inset-0 bg-black opacity-40" />
+    <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
 
-      <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-lg mx-auto px-4">
+    <Dialog.Content
+      className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+      bg-white rounded-md shadow-lg p-6 max-w-sm mx-auto"
+      draggable
+    >
         <div className="bg-white rounded-md shadow-lg px-4 py-6">
           <div className="flex items-center justify-end">
             <Dialog.Close className="p-2 text-gray-400 rounded-md hover:bg-gray-100">
@@ -49,7 +55,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ onSendPayment, onClose, add
               <input
                 className="w-full pl-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 placeholder="Merchant Address"
-                value={address} // Use the actual address prop
+                value={address}
                 readOnly
               />
             </fieldset>
@@ -59,7 +65,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ onSendPayment, onClose, add
                 className="w-full pl-12 pr-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 placeholder="Enter amount"
                 value={amount}
-                onChange={(e) => setAmount(Number(e.target.value))}
+                onChange={(e) => setAmount(e.target.value)}
               />
             </fieldset>
 

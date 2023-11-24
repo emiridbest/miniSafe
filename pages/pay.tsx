@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { contractAddress, abi } from '../utils/pay';
-import { BrowserProvider, Contract, parseEther } from "ethers";
+import { BrowserProvider, Contract, parseEther, parseUnits } from "ethers";
 import PaymentModal from '../utils/modal';
 import MerchantModal from '../utils/merchant';
 
@@ -11,22 +11,14 @@ interface Merchant {
     address: string;
     description: string;
 }
-interface MerchantTableModalProps {
-    onPay: (address: string) => void;
-    onModify: (merchant: Merchant) => void;
-}
 
 
 const Merchant: React.FC = () => {
     const [merchants, setMerchants] = useState<Merchant[]>([]);
-    const [name, setName] = useState<string>('');
-    const [description, setDescription] = useState<string>('');
-    const [address, setAddress] = useState<string>('');
     const [modal, setModal] = useState(false);
     const [merchantModal, setMerchantModal] = useState(false);
     const [selectedMerchant, setSelectedMerchant] = useState<Merchant | null>(null);
     const [paymentModalOpen, setPaymentModalOpen] = useState(false);
-    const [merchantModalOpen, setMerchantModalOpen] = useState(false);
 
     const getMerchants = useCallback(async () => {
         if (window.ethereum) {
@@ -44,8 +36,9 @@ const Merchant: React.FC = () => {
                 const formattedMerchants: Merchant[] = [];
                 for (const merchantIdBN of merchantIds) {
                     const merchantId = parseInt(merchantIdBN);
-                    const merchantDetail = await contract.getMerchantInfo(merchantId - 1);
-                    formattedMerchants.push({ ...merchantDetail, key: merchantId });
+                    const item = merchantId - 1;
+                    const merchantDetail = await contract.getMerchantInfo(item);
+                    formattedMerchants.push({ ...merchantDetail, key: item });
                 }
                 setMerchants(formattedMerchants);
                 console.log("Merchant IDs:", formattedMerchants);
@@ -73,28 +66,26 @@ const Merchant: React.FC = () => {
             await tx.wait();
 
             getMerchants();
-            setName('');
-            setDescription('');
-            setAddress('');
             setMerchantModal(false);
 
         }
     };
 
-    const handlePay = (address: Merchant["address"]) => {
-        setAddress(address);
+    const handlePay = (merchant: Merchant) => {
+        setSelectedMerchant(merchant);
         setPaymentModalOpen(true);
     };
 
+
     const handleModify = (merchant: Merchant) => {
         setSelectedMerchant(merchant);
-        setMerchantModalOpen(true);
+        setMerchantModal(true);
     };
     useEffect(() => {
         getMerchants();
     }, [getMerchants]);
 
-    const handleSendPayment = async (merchantAddress: string, amount: number) => {
+    const handleSendPayment = async (merchantAddress: Merchant["address"], amount: string) => {
         if (window.ethereum) {
             let accounts = await window.ethereum.request({
                 method: "eth_requestAccounts",
@@ -105,6 +96,7 @@ const Merchant: React.FC = () => {
             const signer = await provider.getSigner(userAddress);
             const contract = new Contract(contractAddress, abi, signer);
             console.log(merchantAddress);
+            let deposit = parseInt(amount)
             let tx = await contract.send(merchantAddress, amount);
             await tx.wait();
         }
@@ -147,63 +139,65 @@ const Merchant: React.FC = () => {
                     Add Merchant
                 </button>
             </div>
-            <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
-                <table className="w-full table-auto text-sm text-left">
-                    <thead className="bg-gray-50 text-gray-600 font-medium border-b">
-                        <tr>
-                        <th className="py-3 px-6">S/N</th>
-                            <th className="py-3 px-6">Product Name</th>
-                            <th className="py-3 px-6">Description</th>
-                            <th className="py-3 px-6">Address</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y text-black">
-                        {merchants.map((selectedMerchant, idx) => (
-                            <tr key={idx}>
-                                <td className="px-6 py-4">{selectedMerchant.id}</td>
-                                <td className="px-6 py-4">{selectedMerchant.name}</td>
-                                <td className="px-6 py-4">{selectedMerchant.description}</td>
-                                <td className="px-6 py-4">{selectedMerchant.address}</td>
-                                <td className="text-right px-6">
-                                    <button
-                                        onClick={() => handlePay(selectedMerchant.address)}
-                                        className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg"
-                                    >
-                                        Pay
-                                    </button>
-                                    <button
-                                        onClick={() => handleModify(selectedMerchant)}
-                                        className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg"
-                                    >
-                                        Modify
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
+            <div className="mt-12 overflow-x-auto">
+    <table className="w-full table-auto text-sm text-left">
+        <thead className="bg-gray-50 text-gray-600 font-medium border-b">
+            <tr>
+                <th className="py-3 px-3 sm:px-6">S/N</th>
+                <th className="py-3 px-3 sm:px-6">Product Name</th>
+                <th className="py-3 px-3 sm:px-6">Description</th>
+                <th className="py-3 px-3 sm:px-6">Address</th>
+                <th className="py-3 px-3 sm:px-6">Actions</th>
+            </tr>
+        </thead>
+        <tbody className="divide-y text-black">
+            {merchants.map((selectedMerchant, item) => (
+                <tr key={item}>
+                    <td className="px-3 py-4 sm:px-6">{selectedMerchant.id}</td>
+                    <td className="px-3 py-4 sm:px-6">{selectedMerchant.name}</td>
+                    <td className="px-3 py-4 sm:px-6">{selectedMerchant.description}</td>
+                    <td className="px-3 py-4 sm:px-6">{selectedMerchant.address}</td>
+                    <td className="text-right px-3 py-4 sm:px-6">
+                        <button
+                            onClick={() => handlePay(selectedMerchant)}
+                            className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg mr-2"
+                        >
+                            Pay
+                        </button>
+                        <button
+                            onClick={() => handleModify(selectedMerchant)}
+                            className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg"
+                        >
+                            Modify
+                        </button>
+                    </td>
+                </tr>
+            ))}
+        </tbody>
+    </table>
+</div>
 
-                    </tbody>
-                </table>
-            </div>
 
-            {/* Modal for Pay */}
             {paymentModalOpen && (
                 <PaymentModal
-                    onSendPayment={(merchantAddress, amount) => {
-                        handleSendPayment(merchantAddress, amount);
+                    onSendPayment={(amount) => {
+                        handleSendPayment(selectedMerchant?.address || "", amount);
                         setPaymentModalOpen(false);
                     }}
                     onClose={() => setPaymentModalOpen(false)}
-                    address={selectedMerchant?.address || ''}
-                />
+                    merchant={selectedMerchant || undefined}
+                    />
             )}
 
+
+
             {/* Modal for Modify */}
-            {merchantModalOpen && (
+            {merchantModal && (
                 <MerchantModal
                     onAddMerchant={addMerchant}
                     onModifyMerchant={handleModifyMerchant}
                     onClose={() => {
-                        setMerchantModalOpen(false);
+                        setMerchantModal(false);
                         setSelectedMerchant(null);
                     }}
                     merchant={selectedMerchant || undefined}
