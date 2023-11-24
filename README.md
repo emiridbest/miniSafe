@@ -9,6 +9,7 @@ miniSafe also facilitates fast payment for utilities and services via cUSD.
 - ##ALL BUGS FIXED
 
 watch demo => https://youtu.be/EfEG1wXP5RA?si=tBqjbVhjkfCE1DL3
+## watch Demo  covering utility bills payment https://youtu.be/bLFKGhyrNyw
 
 watch pitch presentation => https://www.loom.com/share/25661e14f0dd4cbe97c5e5f6921cab02?sid=7234e6dc-b90f-45c4-938a-1e90391a0b9a
 
