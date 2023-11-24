@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { contractAddress, abi } from '../utils/pay';
-import { BrowserProvider, Contract} from "ethers";
+import { BrowserProvider, Contract, parseEther} from "ethers";
 import PaymentModal from '../utils/modal';
 import MerchantModal from '../utils/merchant';
 
@@ -84,7 +84,7 @@ const Merchant: React.FC = () => {
         getMerchants();
     }, [getMerchants]);
 
-    const handleSendPayment = async (merchantAddress: Merchant["address"], amount: string) => {
+    const handleSendPayment = async (merchantAddress: Merchant["address"], amount: number) => {
         if (window.ethereum) {
             let accounts = await window.ethereum.request({
                 method: "eth_requestAccounts",
@@ -95,8 +95,7 @@ const Merchant: React.FC = () => {
             const signer = await provider.getSigner(userAddress);
             const contract = new Contract(contractAddress, abi, signer);
             console.log(merchantAddress);
-            let deposit = parseInt(amount)
-            let tx = await contract.send(merchantAddress, deposit);
+            let tx = await contract.send(merchantAddress, amount);
             await tx.wait();
         }
     };
@@ -178,7 +177,7 @@ const Merchant: React.FC = () => {
 
             {paymentModalOpen && (
                 <PaymentModal
-                    onSendPayment={(amount) => {
+                    onSendPayment={(selectedMerchant: string, amount: number) => {
                         handleSendPayment(selectedMerchant[3], amount);
                         setPaymentModalOpen(false);
                     }}

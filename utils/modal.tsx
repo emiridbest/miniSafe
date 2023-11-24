@@ -3,13 +3,13 @@ import * as Dialog from "@radix-ui/react-dialog";
 import React, { useState } from "react";
 
 interface PaymentModalProps {
-  onSendPayment: (address: string, amount: string) => void;
+  onSendPayment: (address: string, amount: number) => void;
   onClose: () => void;
   merchant: Merchant;
 }
 
 const PaymentModal: React.FC<PaymentModalProps> = ({ onSendPayment, onClose, merchant }) => {
-  const [amount, setAmount] = useState<string>("");
+  const [amount, setAmount] = useState<number>(0);
   const [address, setAddress] = useState(merchant[3]);
 
   const handleSendPayment = () => {
@@ -62,10 +62,12 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ onSendPayment, onClose, mer
 
             <fieldset className="Fieldset relative">
               <input
+                type="number"
                 className="w-full pl-12 pr-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 placeholder="Enter amount"
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={(e) => setAmount(Number(e.target.value))}
+                step="0.01"
               />
             </fieldset>
 
