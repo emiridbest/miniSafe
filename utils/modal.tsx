@@ -5,12 +5,12 @@ import React, { useState } from "react";
 interface PaymentModalProps {
   onSendPayment: (address: string, amount: string) => void;
   onClose: () => void;
-  merchant: Merchant | undefined;
+  merchant: Merchant;
 }
 
 const PaymentModal: React.FC<PaymentModalProps> = ({ onSendPayment, onClose, merchant }) => {
   const [amount, setAmount] = useState<string>("");
-  const [address, setAddress] = useState(merchant?.address || "");
+  const [address, setAddress] = useState(merchant[3]);
 
   const handleSendPayment = () => {
     if (amount) {
@@ -19,16 +19,16 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ onSendPayment, onClose, mer
       onClose();
     }
   };
-  
+
   return (
     <Dialog.Root open={true} onOpenChange={(isOpen) => !isOpen && onClose()}>
-    <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+      <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
 
-    <Dialog.Content
-      className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-      bg-white rounded-md shadow-lg p-6 max-w-sm mx-auto"
-      draggable
-    >
+      <Dialog.Content
+        className="fixed top-0 left-1/2 transform -translate-x-1/2
+  bg-white rounded-md shadow-lg p-6 max-w-sm mx-auto"
+        draggable
+      >
         <div className="bg-white rounded-md shadow-lg px-4 py-6">
           <div className="flex items-center justify-end">
             <Dialog.Close className="p-2 text-gray-400 rounded-md hover:bg-gray-100">
@@ -54,7 +54,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ onSendPayment, onClose, mer
             <fieldset className="Fieldset relative">
               <input
                 className="w-full pl-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                placeholder="Merchant Address"
+                placeholder={address}
                 value={address}
                 readOnly
               />

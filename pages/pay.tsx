@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { contractAddress, abi } from '../utils/pay';
-import { BrowserProvider, Contract, parseEther, parseUnits } from "ethers";
+import { BrowserProvider, Contract} from "ethers";
 import PaymentModal from '../utils/modal';
 import MerchantModal from '../utils/merchant';
 
@@ -17,7 +17,7 @@ const Merchant: React.FC = () => {
     const [merchants, setMerchants] = useState<Merchant[]>([]);
     const [modal, setModal] = useState(false);
     const [merchantModal, setMerchantModal] = useState(false);
-    const [selectedMerchant, setSelectedMerchant] = useState<Merchant | null>(null);
+    const [selectedMerchant, setSelectedMerchant] = useState<Merchant[3]>("");
     const [paymentModalOpen, setPaymentModalOpen] = useState(false);
 
     const getMerchants = useCallback(async () => {
@@ -121,7 +121,7 @@ const Merchant: React.FC = () => {
     };
 
     return (
-        <div className="flex flex-col max-w-screen-xl mx-auto px-4 md:px-8">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-8">
             <div className="max-w-lg">
                 <h3 className="text-gray-800 text-xl font-bold sm:text-2xl">
                     Available Merchants
@@ -138,54 +138,53 @@ const Merchant: React.FC = () => {
                     Add Merchant
                 </button>
             </div>
-       <div className="mt-12 overflow-x-auto">
-    <table className="w-full table-auto text-sm text-left">
-        <thead className="bg-gray-50 text-gray-600 font-medium border-b">
-            <tr>
-                <th className="py-3 px-3 sm:px-6">S/N</th>
-                <th className="py-3 px-3 sm:px-6">Product Name</th>
-                <th className="py-3 px-3 sm:px-6">Description</th>
-                <th className="py-3 px-3 sm:px-6">Address</th>
-                <th className="py-3 px-3 sm:px-6">Actions</th>
-            </tr>
-        </thead>
-        <tbody className="divide-y text-black">
-            {merchants && merchants.map((selectedMerchant, item) => (
-                <tr key={item}>
-                    <td className="px-3 py-4 sm:px-6">{selectedMerchant[0]}</td>
-                    <td className="px-3 py-4 sm:px-6">{selectedMerchant[1]}</td>
-                    <td className="px-3 py-4 sm:px-6">{selectedMerchant[2]}</td>
-                    <td className="px-3 py-4 sm:px-6">{selectedMerchant[3]}</td>
-                    <td className="text-right px-3 py-4 sm:px-6">
-                        <button
-                            onClick={() => handlePay(selectedMerchant)}
-                            className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg mr-2"
-                        >
-                            Pay
-                        </button>
-                        <button
-                            onClick={() => handleModify(selectedMerchant)}
-                            className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg"
-                        >
-                            Modify
-                        </button>
-                    </td>
-                </tr>
-            ))}
-        </tbody>
-    </table>
-</div>
+            <div className="mt-12">
+                <table className="w-full table-auto text-sm text-left overflow-x-scroll">
+                    <thead className="bg-gray-50 text-gray-600 font-medium border-b">
+                        <tr>
+                            <th className="py-3 px-3 sm:px-6">Product Name</th>
+                            <th className="py-3 px-3 sm:px-6">Description</th>
+                            <th className="hidden">Address</th>
+                            <th className="py-3 px-3 sm:px-6">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y">
+                        {merchants && merchants.map((selectedMerchant, item) => (
+                            <tr key={item}>
+                                <td className="px-3 py-2 sm:px-6 sm:py-4">{selectedMerchant[1]}</td>
+                                <td className="px-3 py-2 sm:px-6 sm:py-4">{selectedMerchant[2]}</td>
+                                <td className="hidden">{selectedMerchant[3]}</td>
+                                <td className="px-3 py-2 sm:px-1 sm:py-4">
+                                    <button
+                                        onClick={() => handlePay(selectedMerchant)}
+                                        className="py-2 px-3 font-medium text-indigo-600 hover:text-indigo-500 duration-150 hover:bg-gray-50 rounded-lg mb-2 sm:mb-0"
+                                    >
+                                        Pay
+                                    </button>
+                                    <button
+                                        onClick={() => handleModify(selectedMerchant)}
+                                        className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg"
+                                    >
+                                        Modify
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+
+            </div>
 
 
             {paymentModalOpen && (
                 <PaymentModal
                     onSendPayment={(amount) => {
-                        handleSendPayment(selectedMerchant?.address || "", amount);
+                        handleSendPayment(selectedMerchant[3], amount);
                         setPaymentModalOpen(false);
                     }}
                     onClose={() => setPaymentModalOpen(false)}
-                    merchant={selectedMerchant || undefined}
-                    />
+                    merchant={selectedMerchant}
+                />
             )}
 
 
@@ -197,9 +196,9 @@ const Merchant: React.FC = () => {
                     onModifyMerchant={handleModifyMerchant}
                     onClose={() => {
                         setMerchantModal(false);
-                        setSelectedMerchant(null);
+                        setSelectedMerchant("");
                     }}
-                    merchant={selectedMerchant || undefined}
+                    merchant={selectedMerchant}
                 />
             )}
         </div>

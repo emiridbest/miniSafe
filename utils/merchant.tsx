@@ -1,18 +1,12 @@
+import Merchant from "@/pages/pay";
 import * as Dialog from "@radix-ui/react-dialog";
 import React, { useState } from "react";
 
-interface Merchant {
-  [x: string]: any;
-  id: number;
-  name: string;
-  address: string;
-  description: string;
-}
 interface MerchantModalProps {
   onAddMerchant: (name: string, description: string, address: string) => Promise<void>;
   onModifyMerchant: (newName: string, newDescription: string, newAddress: string) => Promise<void>;
   onClose: () => void;
-  merchant: Merchant | undefined;
+  merchant: Merchant;
 }
 
 
@@ -26,7 +20,7 @@ const MerchantModal: React.FC<MerchantModalProps> = ({
 }) => {
   const [name, setName] = useState(merchant?.name || "");
   const [description, setDescription] = useState(merchant?.description || "");
-  const [address, setAddress] = useState(merchant?.address || "");
+  const [address, setAddress] = useState(merchant[3]);
 
   const handleSave = () => {
     if (merchant) {
@@ -39,14 +33,13 @@ const MerchantModal: React.FC<MerchantModalProps> = ({
 
   return (
     <Dialog.Root open={true} onOpenChange={(isOpen) => !isOpen && onClose()}>
-      <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+      <Dialog.Overlay className="fixed inset-0 bg-black opacity-40" />
 
       <Dialog.Content
-        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-        bg-white rounded-md shadow-lg p-6 max-w-sm mx-auto"
+        className="fixed top-0 left-1/2 transform -translate-x-1/2
+  bg-white rounded-md shadow-lg p-6 max-w-sm mx-auto"
         draggable
-      >
-        <div className="bg-white rounded-md shadow-lg px-4 py-6">
+      >        <div className="bg-white rounded-md shadow-lg px-4 py-6">
           <div className="flex items-center justify-end">
             <Dialog.Close className="p-2 text-gray-400 rounded-md hover:bg-gray-100">
               <svg
@@ -90,7 +83,7 @@ const MerchantModal: React.FC<MerchantModalProps> = ({
               />
               <input
                 className="w-full pl-12 pr-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                placeholder="Enter your Wallet Address"
+                placeholder={address}
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
               />
