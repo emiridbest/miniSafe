@@ -1,7 +1,13 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import React, { useState } from "react";
-import Merchant from "@/pages/pay";
 
+interface Merchant {
+  [x: string]: any;
+  id: number;
+  name: string;
+  address: string;
+  description: string;
+}
 interface MerchantModalProps {
   onAddMerchant: (name: string, description: string, address: string) => Promise<void>;
   onModifyMerchant: (newName: string, newDescription: string, newAddress: string) => Promise<void>;

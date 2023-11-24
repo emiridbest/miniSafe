@@ -42,7 +42,6 @@ const Merchant: React.FC = () => {
                 }
                 setMerchants(formattedMerchants);
                 console.log("Merchant IDs:", formattedMerchants);
-
             } catch (error) {
                 console.error("Error fetching merchants:", error);
             }
@@ -139,7 +138,7 @@ const Merchant: React.FC = () => {
                     Add Merchant
                 </button>
             </div>
-            <div className="mt-12 overflow-x-auto">
+       <div className="mt-12 overflow-x-auto">
     <table className="w-full table-auto text-sm text-left">
         <thead className="bg-gray-50 text-gray-600 font-medium border-b">
             <tr>
@@ -151,12 +150,12 @@ const Merchant: React.FC = () => {
             </tr>
         </thead>
         <tbody className="divide-y text-black">
-            {merchants.map((selectedMerchant, item) => (
+            {merchants && merchants.map((selectedMerchant, item) => (
                 <tr key={item}>
-                    <td className="px-3 py-4 sm:px-6">{selectedMerchant.id}</td>
-                    <td className="px-3 py-4 sm:px-6">{selectedMerchant.name}</td>
-                    <td className="px-3 py-4 sm:px-6">{selectedMerchant.description}</td>
-                    <td className="px-3 py-4 sm:px-6">{selectedMerchant.address}</td>
+                    <td className="px-3 py-4 sm:px-6">{selectedMerchant[0]}</td>
+                    <td className="px-3 py-4 sm:px-6">{selectedMerchant[1]}</td>
+                    <td className="px-3 py-4 sm:px-6">{selectedMerchant[2]}</td>
+                    <td className="px-3 py-4 sm:px-6">{selectedMerchant[3]}</td>
                     <td className="text-right px-3 py-4 sm:px-6">
                         <button
                             onClick={() => handlePay(selectedMerchant)}
