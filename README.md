@@ -9,13 +9,15 @@ miniSafe also facilitates fast payment for utilities and services via cUSD.
 - ##ALL BUGS FIXED
 
 watch demo => https://youtu.be/EfEG1wXP5RA?si=tBqjbVhjkfCE1DL3
-## watch Demo  covering utility bills payment https://youtu.be/bLFKGhyrNyw
+
+## watch Demo 2 covering utility bills payment https://youtu.be/eJZ4TtWM1S0
 
 watch pitch presentation => https://www.loom.com/share/25661e14f0dd4cbe97c5e5f6921cab02?sid=7234e6dc-b90f-45c4-938a-1e90391a0b9a
 
 
 ## Sections Not Coverred in The Demo Videos
 - Pay Utility Bills: This section allows merchants to add wallet address as payment gateway so that clients/customers can pay for services with stable coins. Merchant details can also be updated using this portal
+
 ![Screenshot from 2023-11-22 07-36-59](https://github.com/emiridbest/miniSafe/assets/6362475/dc8b92a2-6636-4a8c-a74c-ad6b4f90dfd7)
 
 
