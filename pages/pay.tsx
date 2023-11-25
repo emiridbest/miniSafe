@@ -60,6 +60,9 @@ const Merchant: React.FC = () => {
             const provider = new BrowserProvider(window.ethereum);
             const signer = await provider.getSigner(userAddress);
             const contract = new Contract(contractAddress, abi, signer);
+            console.log(name)
+            console.log(description)
+            console.log(address)
 
             let tx = await contract.addMerchant(name, description, address);
             await tx.wait();
@@ -95,6 +98,7 @@ const Merchant: React.FC = () => {
             const signer = await provider.getSigner(userAddress);
             const contract = new Contract(contractAddress, abi, signer);
             console.log(merchantAddress);
+            console.log(amount);
             let tx = await contract.send(merchantAddress, amount);
             await tx.wait();
         }
@@ -177,10 +181,7 @@ const Merchant: React.FC = () => {
 
             {paymentModalOpen && (
                 <PaymentModal
-                    onSendPayment={(selectedMerchant: string, amount: number) => {
-                        handleSendPayment(selectedMerchant[3], amount);
-                        setPaymentModalOpen(false);
-                    }}
+                    onSendPayment={handleSendPayment}
                     onClose={() => setPaymentModalOpen(false)}
                     merchant={selectedMerchant}
                 />
