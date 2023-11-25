@@ -99,7 +99,8 @@ const Merchant: React.FC = () => {
             const contract = new Contract(contractAddress, abi, signer);
             console.log(merchantAddress);
             console.log(amount);
-            let tx = await contract.send(merchantAddress, amount);
+            let deposit = parseEther(amount.toString());
+            let tx = await contract.send(merchantAddress, deposit, { gasLimit: 500000 });
             await tx.wait();
         }
     };
